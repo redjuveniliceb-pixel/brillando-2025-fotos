@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Oficial BRILLANDO 2025</title>
+    <style>
+        /* --- ESTILOS GENERALES Y DE MARCA BRILLANDO --- */
+        body { 
+            font-family: sans-serif; 
+            background-color: #1a0033; /* Violeta oscuro/Negro */
+            color: white; 
+            margin: 0; 
+            padding: 20px; 
+            min-height: 100vh;
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 40px; 
+        }
+        h1 { 
+            color: #ff8c00; /* Naranja */
+            font-size: 2.5em; 
+            border-bottom: 3px solid #5e17eb; /* Violeta */
+            display: inline-block; 
+            padding-bottom: 5px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.2em;
+            color: #ccc;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+        .photo-card {
+            background-color: #5e17eb; /* Violeta */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .photo-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .download-link {
+            display: block;
+            background-color: #ff8c00; /* Naranja */
+            color: black;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .download-link:hover {
+            background-color: #e67a00;
+        }
+        .message-box {
+            text-align: center;
+            padding: 20px;
+            color: #ff8c00;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GALERÍA OFICIAL BRILLANDO 2025</h1>
+        <p>¡Encontrá y descargá tus fotos del congreso! ✨</p>
+    </div>
+    
+    <div id="gallery" class="gallery-grid">
+        </div>
 
+    <script>
+        // 🚨 CRÍTICO: DEBES REEMPLAZAR ESTA LISTA con los nombres EXACTOS de tus archivos (ej: "DSC_6321.JPG")
+        // Los archivos deben estar subidos a la carpeta /fotos/ en GitHub.
+        const imageFiles = [
+            "DSC_6321.JPG", 
+            "DSC_6322.JPG",
+            "DSC_6323.JPG",
+            "DSC_6324.JPG",
+            // Agrega el resto de tus nombres de archivo aquí
+        ];
+        
+        const gallery = document.getElementById('gallery');
+        
+        if (imageFiles.length === 0) {
+             gallery.innerHTML = '<div class="message-box">⏳ Cargando galería... o aún no hay fotos.</div>';
+        } else {
+            imageFiles.forEach(fileName => {
+                // La URL de la imagen y descarga apunta a la carpeta /fotos/
+                const imageUrl = `./fotos/${fileName}`; 
+                
+                const card = `
+                    <div class="photo-card">
+                        <a href="${imageUrl}" target="_blank">
+                            <img src="${imageUrl}" alt="${fileName}" loading="lazy">
+                        </a>
+                        <a href="${imageUrl}" download="${fileName}" class="download-link">
+                            DESCARGAR FOTO
+                        </a>
+                    </div>
+                `;
+                gallery.innerHTML += card;
+            });
+        }
+    </script>
+</body>
+</html>
